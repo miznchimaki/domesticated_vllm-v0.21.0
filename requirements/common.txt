@@ -35,7 +35,7 @@ mistral_common[image] == 1.11.2
 opencv-python-headless == 4.12.0.88
 pyyaml == 6.0.3
 six == 1.17.0 # transitive dependency of pandas that needs to be the latest version for python 3.12
-setuptools == 77.0.3 # Setuptools is used by triton, we need to ensure a modern version is installed for 3.12+ so that it does not try to import distutils, which was removed in 3.12
+setuptools == 84.0.0 # Setuptools is used by triton, we need to ensure a modern version is installed for 3.12+ so that it does not try to import distutils, which was removed in 3.12
 einops == 0.8.2 # Required for Qwen2-VL.
 compressed-tensors == 0.13.0 # required for compressed-tensors
 depyf==0.20.0 # required for profiling and debugging with compilation config
