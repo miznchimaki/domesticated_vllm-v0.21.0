@@ -68,8 +68,6 @@ from .interfaces_base import (
 logger = init_logger(__name__)
 
 _TEXT_GENERATION_MODELS = {
-    # GRM_QWEN35_TEXT_REGISTRY_PATCH_V1
-    "Qwen3_5ForCausalLM": ("qwen3_5", "Qwen3_5ForCausalLM"),
     # [Decoder-only]
     "AfmoeForCausalLM": ("afmoe", "AfmoeForCausalLM"),
     "ApertusForCausalLM": ("apertus", "ApertusForCausalLM"),

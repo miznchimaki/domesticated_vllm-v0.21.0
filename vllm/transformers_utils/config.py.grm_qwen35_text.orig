@@ -1265,9 +1265,3 @@ def _maybe_retrieve_max_pos_from_hf(model, revision, **kwargs) -> int:
         )
 
     return max_position_embeddings
-
-# GRM_QWEN35_TEXT_CONFIG_REGISTRY_PATCH_V1
-# Transformers 4.57.1 does not register qwen3_5_text.
-# vLLM already ships the compatible config class.
-from vllm.transformers_utils.configs.qwen3_5 import Qwen3_5TextConfig as _GRM_Qwen3_5TextConfig
-_CONFIG_REGISTRY["qwen3_5_text"] = _GRM_Qwen3_5TextConfig

@@ -84,25 +84,6 @@ class PhiAttention(nn.Module):
         prefix: str = "",
     ):
         super().__init__()
-        # SHOWO_QK_LAYERNORM_PATCH_V2
-        # Show-o's bundled PhiForCausalLM forces config.qk_layernorm=True.
-        # Q/K normalization is per attention head.
-        self.qk_layernorm = bool(getattr(config, "qk_layernorm", False))
-        self.showo_qk_head_size = (
-            config.hidden_size // config.num_attention_heads
-        )
-        if self.qk_layernorm:
-            self.q_layernorm = nn.LayerNorm(
-                self.showo_qk_head_size,
-                eps=config.layer_norm_eps,
-                elementwise_affine=True,
-            )
-            self.k_layernorm = nn.LayerNorm(
-                self.showo_qk_head_size,
-                eps=config.layer_norm_eps,
-                elementwise_affine=True,
-            )
-
         self.hidden_size = config.hidden_size
         self.head_size = self.hidden_size // config.num_attention_heads
 
@@ -150,31 +131,6 @@ class PhiAttention(nn.Module):
     ) -> torch.Tensor:
         qkv, _ = self.qkv_proj(hidden_states)
         q, k, v = qkv.chunk(chunks=3, dim=-1)
-        # SHOWO_QK_LAYERNORM_PATCH_V2
-        # Match Show-o PhiAttention ordering:
-        # projection -> per-head Q/K LayerNorm -> RoPE -> Attention.
-        if self.qk_layernorm:
-            _showo_q_shape = q.shape
-            _showo_k_shape = k.shape
-            _showo_head_size = self.showo_qk_head_size
-
-            q = q.reshape(
-                *q.shape[:-1],
-                q.shape[-1] // _showo_head_size,
-                _showo_head_size,
-            )
-            k = k.reshape(
-                *k.shape[:-1],
-                k.shape[-1] // _showo_head_size,
-                _showo_head_size,
-            )
-
-            q = self.q_layernorm(q)
-            k = self.k_layernorm(k)
-
-            q = q.reshape(_showo_q_shape)
-            k = k.reshape(_showo_k_shape)
-
         q, k = self.rotary_emb(position_ids, q, k)
         attn_output = self.attn(q, k, v)
         output, _ = self.dense(attn_output)
