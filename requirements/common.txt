@@ -1,0 +1,65 @@
+regex == 2025.7.33 # Replace re for higher-performance regex matching
+cachetools == 7.0.5
+psutil == 7.2.2
+sentencepiece == 0.2.0 # Required for LLaMA tokenizer.
+numpy == 2.2.6
+requests == 2.32.5
+tqdm == 4.67.3
+blake3 == 1.0.8
+py-cpuinfo == 9.0.0
+transformers == 4.57.1
+tokenizers == 0.22.2 # Required for fast incremental detokenization.
+protobuf == 6.33.2
+fastapi[standard] == 0.135.1 # Required by FastAPI's form models in the OpenAI API server's audio transcriptions endpoint.
+aiohttp == 3.13.3
+openai == 2.6.1 # For Responses API with reasoning content
+pydantic == 2.12.3
+prometheus_client == 0.24.1
+pillow == 11.0.0 # Required for image processing
+prometheus-fastapi-instrumentator == 7.1.0
+tiktoken == 0.9.0  # Required for DBRX tokenizer
+lm-format-enforcer == 0.11.3
+llguidance == 1.3.0
+outlines_core == 0.2.11
+# required for outlines backend disk cache
+diskcache == 5.6.3
+lark == 1.2.2
+xgrammar == 0.1.26
+typing_extensions == 4.15.0
+filelock == 3.25.2 # need to contain https://github.com/tox-dev/filelock/pull/317
+partial-json-parser == 0.2.1.1.post6 # used for parsing partial JSON outputs
+pyzmq == 27.1.0
+msgspec == 0.20.0
+gguf == 0.18.0
+mistral_common[image] == 1.11.2
+opencv-python-headless == 4.12.0.88
+pyyaml == 6.0.3
+six == 1.17.0 # transitive dependency of pandas that needs to be the latest version for python 3.12
+setuptools == 77.0.3 # Setuptools is used by triton, we need to ensure a modern version is installed for 3.12+ so that it does not try to import distutils, which was removed in 3.12
+einops == 0.8.2 # Required for Qwen2-VL.
+compressed-tensors == 0.13.0 # required for compressed-tensors
+depyf==0.20.0 # required for profiling and debugging with compilation config
+cloudpickle == 3.1.2 # allows pickling lambda functions in model_executor/models/registry.py
+watchfiles == 1.1.1 # required for http server to monitor the updates of TLS files
+python-json-logger == 4.0.0 # Used by logging as per examples/others/logging_configuration.md
+ninja == 1.13.0 # Required for xgrammar, rocm, tpu, xpu
+pybase64 == 1.4.2 # fast base64 implementation
+cbor2 == 5.9.0 # Required for cross-language serialization of hashable objects
+ijson == 3.5.0 # Required for mistral streaming tool parser
+setproctitle == 1.3.6 # Used to set process names for better debugging and monitoring
+openai-harmony == 0.0.3  # Required for gpt-oss
+anthropic == 0.86.0
+model-hosting-container-standards == 0.1.4
+mcp == 1.27.0
+opentelemetry-sdk == 1.36.0
+opentelemetry-api == 1.36.0
+opentelemetry-exporter-otlp == 1.36.0
+opentelemetry-semantic-conventions-ai == 0.4.13
+# Required by LMCache
+aiofile == 3.9.0
+aiofiles == 25.1.0
+awscrt == 0.31.3
+cufile-python == 0.2.0
+nvtx == 0.2.13
+sortedcontainers == 2.4.0
+caio == 0.9.24
