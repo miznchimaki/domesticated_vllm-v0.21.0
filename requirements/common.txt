@@ -1,4 +1,4 @@
-regex == 2025.7.33 # Replace re for higher-performance regex matching
+regex == 2026.7.19 # Replace re for higher-performance regex matching
 cachetools == 7.0.5
 psutil == 7.2.2
 sentencepiece == 0.2.0 # Required for LLaMA tokenizer.
